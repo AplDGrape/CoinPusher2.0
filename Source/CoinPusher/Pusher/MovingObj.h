@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+
+#include "Components/ActorComponent.h"
+
 #include "MovingObj.generated.h"
 
 UCLASS()
@@ -25,6 +28,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathing", meta = (ExposeOnSpawn = "true", MakeEditWidget = "true"))
 	TArray<FVector> ThePath;
 
+	void Increase();
+	void Decrease();
+
+	float CurrentSpd = 0.0f;
+	bool ObjSpd;
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -37,4 +46,7 @@ private:
 	//Deals Movement
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	class UInterpToMovementComponent* MovementComponent;
+
+	//Handles Inputs
+	//UPROPERTY(EditAnywhere) AActor* ObjSpeed = NULL;
 };

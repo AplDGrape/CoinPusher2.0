@@ -5,6 +5,7 @@
 
 #include "Components/BoxComponent.h"
 #include "Components/InterpToMovementComponent.h"
+#include "Components/InputComponent.h"
 
 // Sets default values
 AMovingObj::AMovingObj()
@@ -22,11 +23,14 @@ AMovingObj::AMovingObj()
 	MovementComponent = CreateDefaultSubobject<UInterpToMovementComponent>(TEXT("MovementComponent"));
 
 	//Setting up default parameters
-	MovementComponent->Duration = 5.0f;
+	MovementComponent->Duration = CurrentSpd;
 	//Sweep for blocking collisions during movement
 	MovementComponent->bSweep = true;
 	//Back and forth movement
 	MovementComponent->BehaviourType = EInterpToBehaviourType::PingPong;
+
+	//Get possession automatically
+	AutoPossessPlayer = EAutoReceiveInput::Player1;
 }
 
 // Called when the game starts or when spawned
@@ -34,6 +38,12 @@ void AMovingObj::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//this->ObjSpeed->SetActorHiddenInGame(true);
+	if (this->InputComponent != NULL)
+		this->InputComponent->BindAction("IncreaseSpeed", IE_Pressed, this, &AMovingObj::Increase);
+	if (this->InputComponent != NULL)
+		this->InputComponent->BindAction("DecreaseSpeed", IE_Pressed, this, &AMovingObj::Decrease);
+
 	//Setting up control points for the movement
 	MovementComponent->ControlPoints.Add(FInterpControlPoint(FVector(0.f, 0.f, 0.f), true));
 	//Going through the paths
@@ -49,7 +59,33 @@ void AMovingObj::BeginPlay()
 void AMovingObj::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	{
+		if (ObjSpd)
+		{
+			CurrentSpd -= CurrentSpd;
+		}
+		MovementComponent->Duration = CurrentSpd;
+	}
+}
 
+void AMovingObj::Increase()
+{
+	ObjSpd = true;
+	//MovementComponent->Duration = CurrentSpd - 1.0f;
+	/*if (CurrentSpd <= 1.f)
+		CurrentSpd = 1.0f;
+	else
+		CurrentSpd--;*/
+}
+
+void AMovingObj::Decrease()
+{
+	if (CurrentSpd >= 10.f)
+		CurrentSpd = 10.f;
+	else
+		CurrentSpd++;
+
+	MovementComponent->Duration = CurrentSpd;
 }
 
 // Called to bind functionality to input
@@ -57,5 +93,7 @@ void AMovingObj::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	/*InputComponent->BindAction("IncreaseSpeed", IE_Pressed, this, &AMovingObj::Increase);
+	InputComponent->BindAction("DecreaseSpeed", IE_Pressed, this, &AMovingObj::Decrease);*/
 }
 
