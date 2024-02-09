@@ -59,18 +59,18 @@ void AMovingObj::BeginPlay()
 void AMovingObj::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	{
+	/*{
 		if (ObjSpd)
 		{
 			CurrentSpd -= CurrentSpd;
 		}
 		MovementComponent->Duration = CurrentSpd;
-	}
+	}*/
 }
 
 void AMovingObj::Increase()
 {
-	ObjSpd = true;
+	//ObjSpd = true;
 	//MovementComponent->Duration = CurrentSpd - 1.0f;
 	/*if (CurrentSpd <= 1.f)
 		CurrentSpd = 1.0f;
@@ -80,10 +80,9 @@ void AMovingObj::Increase()
 
 void AMovingObj::Decrease()
 {
-	if (CurrentSpd >= 10.f)
-		CurrentSpd = 10.f;
-	else
-		CurrentSpd++;
+	CurrentSpd = CurrentSpd + 1.0f;
+	if (CurrentSpd > 10.0f)
+		CurrentSpd = 10.0f;
 
 	MovementComponent->Duration = CurrentSpd;
 }

@@ -28,7 +28,13 @@ void ACoinSpawner::BeginPlay()
 
 	this->spawnedCoin->SetActorHiddenInGame(true);
 	if(this->InputComponent != NULL)
-		this->InputComponent->BindAction("SpawnCoin", IE_Pressed, this, &ACoinSpawner::spawnCoin);
+		this->InputComponent->BindAction("SpawnCoin", IE_Pressed, this, &ACoinSpawner::AmtCoin);
+	//Increase number of coins spawned
+	if (this->InputComponent != NULL)
+		this->InputComponent->BindAction("More", IE_Pressed, this, &ACoinSpawner::Increase);
+	//Decrease number of coins spawned
+	if (this->InputComponent != NULL)
+		this->InputComponent->BindAction("Less", IE_Pressed, this, &ACoinSpawner::Decrease);
 
 	if (this->objectPool != NULL)
 		this->objectPoolComponent = this->objectPool->FindComponentByClass<UObjectPoolComponent>();
@@ -41,6 +47,29 @@ void ACoinSpawner::BeginPlay()
 void ACoinSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void ACoinSpawner::Increase()
+{
+	Num++;
+	if (Num > 20)
+		Num = 20;
+}
+
+void ACoinSpawner::Decrease()
+{
+	Num--;
+	if (Num < 1)
+		Num = 1;
+}
+
+void ACoinSpawner::AmtCoin()
+{
+	for (int i = 0; i < Num; i++)
+	{
+		spawnCoin();
+	}
+	
 }
 
 void ACoinSpawner::spawnCoin()

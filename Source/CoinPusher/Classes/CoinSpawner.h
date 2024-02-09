@@ -27,6 +27,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	int Num = 1;
+
 private:
 	UPROPERTY(EditAnywhere) FVector coinSize = FVector(0.5f, 0.5f, 0.04);
 
@@ -41,6 +43,13 @@ private:
 	UPROPERTY(EditAnywhere) float spawnBoundsY = 1.0f;
 
 	void spawnCoin();
+
+	//Spawn x number of coins
+	void AmtCoin();
+	//increase amount
+	void Increase();
+	//decrease amount
+	void Decrease();
 
 	FRotator getRandomizedRotation();
 	FVector getRandomizedLocation();

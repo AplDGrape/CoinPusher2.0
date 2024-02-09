@@ -31,7 +31,9 @@ public:
 	void Increase();
 	void Decrease();
 
-	float CurrentSpd = 0.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathing", meta = (ExposeOnSpawn = "true", MakeEditWidget = "true")) 
+	float CurrentSpd = 5;
+
 	bool ObjSpd;
 
 	// Called to bind functionality to input
