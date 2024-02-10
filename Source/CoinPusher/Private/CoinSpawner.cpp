@@ -4,6 +4,10 @@
 #include "CoinSpawner.h"
 #include "Components/InputComponent.h"
 
+#include "UObject/ConstructorHelpers.h"
+//#include "Engine.h"
+#include "Kismet/KismetMathLibrary.h"
+
 // Sets default values for this component's properties
 ACoinSpawner::ACoinSpawner()
 {
@@ -67,10 +71,23 @@ void ACoinSpawner::AmtCoin()
 {
 	for (int i = 0; i < Num; i++)
 	{
+		//Colour();
 		spawnCoin();
 	}
 	
 }
+
+//void ACoinSpawner::Colour()
+//{
+//	/*UStaticMeshComponent* spawnedCoin = this->FindComponentByClass<UStaticMeshComponent>();
+//	spawnedCoin->SetMobility(EComponentMobility::Movable);
+//
+//	UMaterialInstanceDynamic* material = UMaterialInstanceDynamic::Create(spawnedCoin->GetMaterial(0), NULL);
+//
+//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, material->GetName());
+//
+//	material->SetVectorParameterValue(FName(TEXT("BaseColor")), FLinearColor(0.9f, 0.1f, 0.1f));*/
+//}
 
 void ACoinSpawner::spawnCoin()
 {

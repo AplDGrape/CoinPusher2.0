@@ -27,7 +27,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//Get defualt number for spawned coins
 	int Num = 1;
+
+	//Colour mat
+	//UPROPERTY()
+	//UMaterialInstanceDynamic* MaterialInstance;
+
+	//UPROPERTY()
+	//UMaterialInterface* m_Dynamic;
+
+	////Change colour
+	//UFUNCTION(BlueprintCallable)
+	//void Colour();
 
 private:
 	UPROPERTY(EditAnywhere) FVector coinSize = FVector(0.5f, 0.5f, 0.04);

@@ -92,7 +92,7 @@ void AMovingObj::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	/*InputComponent->BindAction("IncreaseSpeed", IE_Pressed, this, &AMovingObj::Increase);
-	InputComponent->BindAction("DecreaseSpeed", IE_Pressed, this, &AMovingObj::Decrease);*/
+	InputComponent->BindAction("IncreaseSpeed", IE_Pressed, this, &AMovingObj::Increase);
+	InputComponent->BindAction("DecreaseSpeed", IE_Pressed, this, &AMovingObj::Decrease);
 }
 

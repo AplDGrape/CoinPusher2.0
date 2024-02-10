@@ -28,8 +28,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathing", meta = (ExposeOnSpawn = "true", MakeEditWidget = "true"))
 	TArray<FVector> ThePath;
 
-	void Increase();
-	void Decrease();
+	UFUNCTION(BlueprintCallable) void Increase();
+	UFUNCTION(BlueprintCallable) void Decrease();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathing", meta = (ExposeOnSpawn = "true", MakeEditWidget = "true")) 
 	float CurrentSpd = 5;
