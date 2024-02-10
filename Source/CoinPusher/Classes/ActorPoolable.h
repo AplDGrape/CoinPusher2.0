@@ -30,6 +30,16 @@ public:
 	void SetIndex(int i);
 	int GetIndex();
 
+	/*UPROPERTY(EditAnywhere, Category = "ColorMesh") class UStaticMeshComponent* MeshComponent;
+
+	UPROPERTY()
+	UMaterialInstanceDynamic* MaterialInstance;
+
+	UPROPERTY()
+	UMaterialInterface* m_Dynamic;
+
+	UFUNCTION(BlueprintCallable) void ChangeColour();*/
+
 private:
 	int index = -1;
 

@@ -31,15 +31,13 @@ public:
 	int Num = 1;
 
 	//Colour mat
-	//UPROPERTY()
-	//UMaterialInstanceDynamic* MaterialInstance;
+	/*UPROPERTY()
+	UMaterialInstanceDynamic* MaterialInstance;
 
-	//UPROPERTY()
-	//UMaterialInterface* m_Dynamic;
+	UPROPERTY()
+	UMaterialInterface* m_Dynamic;
 
-	////Change colour
-	//UFUNCTION(BlueprintCallable)
-	//void Colour();
+	UFUNCTION(BlueprintCallable) void ChangeColour();*/
 
 private:
 	UPROPERTY(EditAnywhere) FVector coinSize = FVector(0.5f, 0.5f, 0.04);
